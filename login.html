@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>SANZ HUB — Neural Access Gateway</title>
+<link rel="icon" type="image/png" href="assets/logos/sanzhub.png">
+
+<meta name="title" content="SANZ HUB Login">
+
+<meta name="description" content="Secure AI login gateway for SANZ HUB futuristic cyber portfolio.">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================
+ROOT
+===================================== */
+
+:root{
+  --red:#ff0033;
+  --black:#000;
+  --dark:#070707;
+  --text:#ffffff;
+}
+
+/* =====================================
+RESET
+===================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+
+  background:#000;
+
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  font-family:'Rajdhani',sans-serif;
+
+  color:var(--text);
+
+  min-height:100vh;
+}
+
+/* =====================================
+BACKGROUND GRID
+===================================== */
+
+.bg-grid{
+
+  position:fixed;
+  inset:0;
+
+  background-image:
+  linear-gradient(rgba(255,0,51,0.07) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,0,51,0.07) 1px, transparent 1px);
+
+  background-size:50px 50px;
+
+  animation:gridMove 15s linear infinite;
+}
+
+@keyframes gridMove{
+
+  to{
+    background-position:50px 50px;
+  }
+
+}
+
+/* =====================================
+SCANLINES
+===================================== */
+
+.scanline{
+
+  position:fixed;
+  inset:0;
+
+  background:
+  repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.02) 3px
+  );
+
+  pointer-events:none;
+}
+
+/* =====================================
+MAIN
+===================================== */
+
+.main{
+
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:40px 20px;
+
+  position:relative;
+  z-index:5;
+}
+
+/* =====================================
+LOGIN CARD
+===================================== */
+
+.login-card{
+
+  width:100%;
+  max-width:470px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,0,51,0.08),
+    rgba(0,0,0,0.92)
+  );
+
+  border:1px solid rgba(255,0,51,0.35);
+
+  backdrop-filter:blur(18px);
+
+  padding:40px 35px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  box-shadow:
+  0 0 25px rgba(255,0,51,0.2),
+  0 0 90px rgba(255,0,51,0.08),
+  inset 0 0 30px rgba(255,0,51,0.08);
+
+}
+
+.login-card::before{
+
+  content:'';
+
+  position:absolute;
+
+  inset:12px;
+
+  border:1px solid rgba(255,0,51,0.12);
+
+  pointer-events:none;
+}
+
+/* =====================================
+LOGO
+===================================== */
+
+.logo-wrap{
+
+  text-align:center;
+
+  margin-bottom:18px;
+}
+
+.logo{
+
+  width:105px;
+
+  filter:
+  drop-shadow(0 0 15px #ff0033)
+  drop-shadow(0 0 35px #ff0033);
+
+  animation:logoPulse 2s infinite alternate;
+}
+
+@keyframes logoPulse{
+
+  from{
+    transform:scale(0.94);
+  }
+
+  to{
+    transform:scale(1.05);
+  }
+
+}
+
+.brand{
+
+  font-family:'Orbitron',sans-serif;
+
+  font-size:34px;
+
+  margin-top:10px;
+
+  letter-spacing:4px;
+}
+
+.brand span{
+  color:var(--red);
+}
+
+.subtitle{
+
+  margin-top:8px;
+
+  color:#aaa;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  font-size:12px;
+}
+
+/* =====================================
+HUD
+===================================== */
+.hud{
+
+  position:relative;
+
+  width:200px;
+  height:200px;
+
+  margin:25px auto;
+
+  margin-top:10px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ring{
+
+  position:absolute;
+
+  border-radius:50%;
+
+  border:2px solid rgba(255,0,51,0.3);
+}
+
+.r1{
+
+  width:200px;
+  height:200px;
+
+  border-top:2px solid #ff0033;
+
+  animation:spin 12s linear infinite;
+
+  box-shadow:
+  0 0 30px rgba(255,0,51,0.4);
+}
+
+.r2{
+
+  width:145px;
+  height:145px;
+
+  border-left:2px solid #ffffff;
+
+  animation:spinReverse 8s linear infinite;
+}
+
+.r3{
+
+  width:95px;
+  height:95px;
+
+  border-top:2px solid #ff0033;
+
+  animation:spin 5s linear infinite;
+}
+
+.center-logo-wrap{
+
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+  radial-gradient(
+    circle,
+    rgba(255,0,51,0.2),
+    transparent
+  );
+
+  box-shadow:
+  0 0 25px rgba(255,0,51,0.6);
+}
+
+.center-logo{
+
+  width:58px;
+
+  filter:
+  drop-shadow(0 0 10px #ff0033)
+  drop-shadow(0 0 25px #ff0033);
+
+  animation:centerPulse 2s infinite alternate;
+}
+
+@keyframes centerPulse{
+
+  from{
+    transform:scale(0.92);
+  }
+
+  to{
+    transform:scale(1.05);
+  }
+
+}
+
+@keyframes spin{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+@keyframes spinReverse{
+
+  from{
+    transform:rotate(360deg);
+  }
+
+  to{
+    transform:rotate(0deg);
+  }
+
+}
+
+/* =====================================
+FORM
+===================================== */
+
+.form-group{
+  margin-bottom:18px;
+}
+
+.label{
+
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#ff0033;
+
+  font-size:12px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+.input{
+
+  width:100%;
+
+  background:rgba(255,0,51,0.05);
+
+  border:1px solid rgba(255,0,51,0.25);
+
+  padding:15px;
+
+  color:#fff;
+
+  outline:none;
+
+  font-size:15px;
+
+  transition:0.3s;
+}
+
+.input:focus{
+
+  border-color:#ff0033;
+
+  box-shadow:
+  0 0 15px rgba(255,0,51,0.3);
+}
+
+/* =====================================
+ERROR EFFECT
+===================================== */
+
+.input-error{
+
+  border-color:#ff0033 !important;
+
+  animation:shake 0.3s linear 2;
+}
+
+@keyframes shake{
+
+  0%{
+    transform:translateX(0);
+  }
+
+  25%{
+    transform:translateX(-5px);
+  }
+
+  50%{
+    transform:translateX(5px);
+  }
+
+  75%{
+    transform:translateX(-5px);
+  }
+
+  100%{
+    transform:translateX(0);
+  }
+
+}
+
+/* =====================================
+BUTTON
+===================================== */
+
+.login-btn{
+
+  width:100%;
+
+  border:none;
+
+  background:#ff0033;
+
+  color:#fff;
+
+  padding:15px;
+
+  margin-top:10px;
+
+  cursor:pointer;
+
+  font-family:'Orbitron',sans-serif;
+
+  letter-spacing:3px;
+
+  font-size:12px;
+
+  text-transform:uppercase;
+
+  box-shadow:
+  0 0 20px rgba(255,0,51,0.5);
+
+  transition:0.3s;
+}
+
+.login-btn:hover{
+
+  transform:translateY(-3px);
+
+  box-shadow:
+  0 0 35px rgba(255,0,51,0.8);
+}
+
+/* =====================================
+STATUS
+===================================== */
+
+.status{
+
+  text-align:center;
+
+  margin-top:18px;
+
+  letter-spacing:2px;
+
+  font-size:13px;
+
+  min-height:20px;
+}
+
+/* =====================================
+DISCLAIMER
+===================================== */
+
+.disclaimer{
+
+  margin-top:28px;
+
+  border:1px solid rgba(255,0,51,0.25);
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,0,51,0.08),
+    rgba(0,0,0,0.7)
+  );
+
+  padding:18px;
+
+  color:#aaa;
+
+  line-height:1.9;
+
+  font-size:14px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  box-shadow:
+  inset 0 0 20px rgba(255,0,51,0.08);
+}
+
+.warning-head{
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  margin-bottom:12px;
+
+  color:#ff0033;
+
+  font-family:'Orbitron',sans-serif;
+
+  letter-spacing:2px;
+
+  font-size:11px;
+
+  text-transform:uppercase;
+}
+
+.warn-icon{
+
+  font-size:16px;
+
+  animation:warnBlink 1s infinite alternate;
+
+  filter:drop-shadow(0 0 8px #ff0033);
+}
+
+@keyframes warnBlink{
+
+  from{
+    opacity:0.5;
+  }
+
+  to{
+    opacity:1;
+  }
+
+}
+
+/* =====================================
+ENQUIRY BUTTON
+===================================== */
+
+.enquiry-wrap{
+  text-align:center;
+}
+
+.enquiry-btn{
+
+  display:inline-block;
+
+  margin-top:18px;
+
+  background:rgba(255,0,51,0.08);
+
+  border:1px solid rgba(255,0,51,0.4);
+
+  color:#ff0033;
+
+  padding:10px 22px;
+
+  text-decoration:none;
+
+  font-family:'Orbitron',sans-serif;
+
+  letter-spacing:2px;
+
+  font-size:12px;
+
+  transition:0.3s;
+
+  box-shadow:
+  0 0 12px rgba(255,0,51,0.15);
+}
+
+.enquiry-btn:hover{
+
+  background:#ff0033;
+
+  color:#fff;
+
+  box-shadow:
+  0 0 25px rgba(255,0,51,0.6);
+}
+
+/* =====================================
+RESPONSIVE
+===================================== */
+
+@media(max-width:600px){
+
+.login-card{
+  padding:30px 22px;
+}
+
+.brand{
+  font-size:28px;
+}
+
+.logo{
+  width:85px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg-grid"></div>
+<div class="scanline"></div>
+
+<div class="main">
+
+<div class="login-card">
+
+<!-- =========================
+TOP LOGO
+========================= -->
+
+<div class="logo-wrap">
+
+
+<div class="brand">
+<span>SANZ</span> HUB
+</div>
+
+<div class="subtitle">
+Neural Access Gateway
+</div>
+
+</div>
+
+<!-- =========================
+HUD
+========================= -->
+
+<div class="hud">
+
+<div class="ring r1"></div>
+<div class="ring r2"></div>
+<div class="ring r3"></div>
+
+<div class="center-logo-wrap">
+
+<img 
+src="assets/logos/sanzhub.png"
+class="center-logo"
+>
+
+</div>
+
+</div>
+
+<!-- =========================
+FORM
+========================= -->
+
+<form id="loginForm">
+
+<div class="form-group">
+
+<label class="label">
+Username
+</label>
+
+<input 
+type="text"
+class="input"
+id="username"
+placeholder="Enter username"
+required
+>
+
+</div>
+
+<div class="form-group">
+
+<label class="label">
+Password
+</label>
+
+<input 
+type="password"
+class="input"
+id="password"
+placeholder="Enter password"
+required
+>
+
+</div>
+
+<button class="login-btn" type="submit">
+Initialize Access
+</button>
+
+</form>
+
+<div class="status" id="status"></div>
+
+<!-- =========================
+DISCLAIMER
+========================= -->
+
+<div class="disclaimer">
+
+<div class="warning-head">
+
+<span class="warn-icon">⚠</span>
+
+<span>SYSTEM NOTICE</span>
+
+</div>
+
+This platform is created for educational and portfolio purposes only.
+
+All AI systems and cyber projects displayed in SANZ HUB are officially developed and maintained by SANZ.
+
+Unauthorized access or misuse is strictly prohibited.
+
+</div>
+
+<!-- =========================
+ENQUIRY
+========================= -->
+
+<div class="enquiry-wrap">
+
+<a 
+href="https://wa.me/917708697536?text=Hello%20I%20am%20from%20your%20website"
+class="enquiry-btn"
+target="_blank"
+>
+ENQUIRY
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+AUDIO
+========================= -->
+
+<audio id="warningSound">
+<source src="assets/audio/warning.mp3" type="audio/mp3">
+</audio>
+
+<audio id="successSound">
+<source src="assets/audio/access.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+
+/* =====================================
+AUDIO
+===================================== */
+
+const warningSound =
+document.getElementById("warningSound");
+
+const successSound =
+document.getElementById("successSound");
+
+/* =====================================
+LOGIN
+===================================== */
+
+const USERNAME = "sanzhub";
+const PASSWORD = "sanzhub@2026";
+
+const form =
+document.getElementById("loginForm");
+
+form.addEventListener("submit",(e)=>{
+
+e.preventDefault();
+
+const user =
+document.getElementById("username");
+
+const pass =
+document.getElementById("password");
+
+const status =
+document.getElementById("status");
+
+if(
+user.value === USERNAME &&
+pass.value === PASSWORD
+){
+
+successSound.play();
+
+status.innerHTML =
+"ACCESS GRANTED";
+
+status.style.color =
+"#00ff88";
+
+/* SUCCESS VOICE */
+
+const granted =
+new SpeechSynthesisUtterance();
+
+granted.text = `
+Access granted operator.
+`;
+
+granted.rate = 0.8;
+granted.pitch = 0.5;
+
+setTimeout(()=>{
+
+  speechSynthesis.speak(granted);
+
+},3000);
+
+setTimeout(()=>{
+
+  localStorage.setItem("sanzLoggedIn","true");
+
+  window.location.href ="index.html";
+
+},6000);
+
+}else{
+
+warningSound.play();
+
+user.classList.add("input-error");
+pass.classList.add("input-error");
+
+status.innerHTML =
+"INVALID CREDENTIALS";
+
+status.style.color =
+"#ff0033";
+
+/* WARNING VOICE */
+
+const denied =
+new SpeechSynthesisUtterance();
+
+denied.text = `
+Warning.
+Invalid credentials detected.
+Access denied.
+`;
+
+denied.rate = 0.85;
+denied.pitch = 0.4;
+
+speechSynthesis.speak(denied);
+
+setTimeout(()=>{
+
+user.classList.remove("input-error");
+pass.classList.remove("input-error");
+
+},1000);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
